@@ -50,5 +50,10 @@ def calculate():
         children=num_children, years_invested=num_years_invested) 
 
 
+@app.route('/graphs')
+def graphs():
+    return render_template('graphs.html')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

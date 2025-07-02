@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Graphs{% endblock %}
+
+{% block content %}
+
+    <h1>Graphs of the Mael Investment Project (MIP)</h1>
+    <p>This page shows you the graphs of the Mael Investment Project (MIP).</p>
+
+    <h2>Profit Graphs</h2>
+    <h3>Profit Over Marriage Years After 10 Years of Investment</h3><br>
+    <img src="{{ url_for('static', filename='Graphs/profit-10-years.png') }}" alt="Profit Over Marriage Time After Investement"><br>
+
+    <a href="{{ url_for ('index')}}">Home Page</a><br>
+
+    <i>Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this project, please 
+        contact me at: alexandretuanle@gmail.com</i><br>
+
+{% endblock %}
