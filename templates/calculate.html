@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+
+    <h1>Results of the Mael Investment Project (MIP)</h1>
+    <p>Mael was married for {{ years_married }} years and decided to invest for {{ years_invested }} years. He had {{ children }} 
+        {{ "children" if children != 1 else "child" }} and led a happy life!
+    </p>
+    <p>After {{ years_married }} years Mael divorced and gained <strong>{{ investment }} USD</strong>, after investing in the S&P
+        500 for {{ years_invested }} years he made a total of: <strong>{{ profit }} USD</strong>, do you think he made a good
+        investment?
+    </p>
+
+    <i>Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this project, please 
+        contact me at: alexandretuanle@gmail.com</i><br>
+
+{% endblock %}

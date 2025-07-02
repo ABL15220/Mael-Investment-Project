@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Mael Investment Project{% endblock %}
+
+{% block content %}
+
+    <h1>Welcome to the Mael Investment Project (MIP)</h1>
+    <strong>This shows you how much Mael will make depending on how long he stays married with his soulmate (name classified)
+    </strong><br>
+
+    <p>Mael is given every year that he is married 712 Caprisuns from his good friend Alexis, Alexis gives him 1 Caprisun for 
+        every person "in the marriage" (Mael and his soulmate + any children they have) per day and delivers all the Caprisuns at
+        the end of the year. 
+    </p>
+
+    <p>Here you can input the parameters of the marriage:</p>
+    <ul>
+        <li>Number of years married</li>
+        <li>Number of children</li>
+        <li>Number of years Mael invests in the S&P 500</li>
+    </ul>
+
+    <p>And you will get the total amount of money Mael will receive at the end of the time he wishes to stop investing.
+        This program takes into account the average inflation rate over the past 10 years, and the average return of the S&P 500
+        over 10 years. Mael will sell all his Caprisuns every year at the end of the year, and invest all the money he gets from
+        selling the Caprisuns in the S&P 500. 
+    </p>
+    
+    <h2>Input the parameters</h2>
+    <form method="POST" action="{{ url_for('calculate') }}" enctype="multipart/form-data">
+        <input type="number" name="years_married" placeholder="Number of years married" required><br>
+        <input type="number" name="children" placeholder="Number of children" required><br>
+        <input type="number" name="years_invested" placeholder="Number of years Mael invests in the S&P 500" required><br>
+        <input type="submit" value="Calculate">
+    </form><br>
+
+    <i>Note: This is a fun project and not meant to be taken seriously. If anyone involed is offended by this project, please 
+        contact me at: alexandretuanle@gmail.com</i><br>
+
+{% endblock %}
