@@ -1,0 +1,33 @@
+body{
+    font-family: Arial, sans-serif;
+    align-self: center; 
+    background-color: white;   
+    padding: 20px;
+}
+
+form{
+    align-content: center;
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+#form_title{
+    text-align: center;
+}
+
+#disclaimer{
+    text-align: left;
+    font-style: italic;
+    color: gray;
+    width: 600px;
+    height: 50px;
+    display: block;
+    margin-top: 30px;
+}
+
+#link{
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    text-align: left;
+}

@@ -26,7 +26,7 @@
         selling the Caprisuns in the S&P 500. 
     </p>
     
-    <h2>Input the parameters</h2>
+    <h2 id="form_title">Input the parameters</h2>
     <form method="POST" action="{{ url_for('calculate') }}" enctype="multipart/form-data">
         <input type="number" name="years_married" placeholder="Number of years married" required><br>
         <input type="number" name="children" placeholder="Number of children" required><br>
@@ -35,9 +35,9 @@
     </form><br>
 
     <p>Here are different graphs:</p>
-    <a href="{{ url_for('graphs') }}">Graphs</a><br>
+    <a href="{{ url_for('graphs') }}" id="link">Graphs</a><br>
 
-    <i>Note: This is a fun project and not meant to be taken seriously. If anyone involed is offended by this project, please 
+    <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involed is offended by this project, please 
         contact me at: alexandretuanle@gmail.com</i><br>
 
 {% endblock %}
