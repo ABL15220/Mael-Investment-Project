@@ -20,7 +20,7 @@
         <li>Number of years Mael invests in the S&P 500</li>
     </ul>
 
-    <p>And you will get the total amount of money Mael will receive at the end of the time he wishes to stop investing.
+    <p id="rules">And you will get the total amount of money Mael will receive at the end of the time he wishes to stop investing.
         This program takes into account the average inflation rate over the past 10 years, and the average return of the S&P 500
         over 10 years. Mael will sell all his Caprisuns every year at the end of the year, and invest all the money he gets from
         selling the Caprisuns in the S&P 500. 
@@ -34,8 +34,10 @@
         <input type="submit" value="Calculate">
     </form><br>
 
-    <p>Here are different graphs:</p>
-    <a href="{{ url_for('graphs') }}" id="link">Graphs</a><br>
+    <div id="graph_link">
+        <p>Here are different graphs:</p>
+        <a href="{{ url_for('graphs') }}" id="link">Graphs</a><br>
+    </div>
 
     <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involed is offended by this project, please 
         contact me at: alexandretuanle@gmail.com</i><br>

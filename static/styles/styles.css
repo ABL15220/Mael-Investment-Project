@@ -1,33 +1,52 @@
-body{
+body {
     font-family: Arial, sans-serif;
-    align-self: center; 
+    text-align: left; 
     background-color: white;   
     padding: 20px;
+    
+    background-image: url("../Images/background-purple-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#rules{
+    text-align: left;
+    width: 1000px;
 }
 
 form{
-    align-content: center;
-    padding-left: 250px;
-    padding-right: 250px;
+    float: right;
+    padding-left: 100px;
+    padding-right: 300px;
 }
 
 #form_title{
-    text-align: center;
+    margin-right: 250px;
+    text-align: right;
+    margin-top: -200px;
 }
 
 #disclaimer{
     text-align: left;
     font-style: italic;
     color: gray;
-    width: 600px;
+    width: auto;
     height: 50px;
     display: block;
-    margin-top: 30px;
+    margin-top: 425px;
+}
+
+#graph_link{
+    text-align: left;
+    width: 1000px;
+    margin-top: 150px;
 }
 
 #link{
     text-decoration: none;
-    color: blue;
+    color: rgb(6, 6, 177);
     font-weight: bold;
     text-align: left;
 }
