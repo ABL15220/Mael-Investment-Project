@@ -4,6 +4,8 @@
 
 {% block content %}
 
+    <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
+
     <h1>Welcome to the Mael Investment Project (MIP)</h1>
     <strong>This shows you how much Mael will make depending on how long he stays married with his soulmate (name classified)
     </strong><br>
@@ -33,11 +35,6 @@
         <input type="number" name="years_invested" placeholder="Number of years Mael invests in the S&P 500" required><br>
         <input type="submit" value="Calculate">
     </form><br>
-
-    <div id="graph_link">
-        <p>Here are different graphs:</p>
-        <a href="{{ url_for('graphs') }}" id="link">Graphs</a><br>
-    </div>
 
     <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involed is offended by this project, please 
         contact me at: alexandretuanle@gmail.com</i><br>

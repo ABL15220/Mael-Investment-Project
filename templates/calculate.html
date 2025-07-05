@@ -4,6 +4,8 @@
 
 {% block content %}
 
+    <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
+
     <h1>Results of the Mael Investment Project (MIP)</h1>
     <p>Mael was married for {{ years_married }} years and decided to invest for {{ years_invested }} years. He had {{ children }} 
         {{ "children" if children != 1 else "child" }} and led a happy life!

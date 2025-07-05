@@ -1,10 +1,11 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Orbitron';
     text-align: left; 
     background-color: white;   
     padding: 20px;
+    color:white;
     
-    background-image: url("../Images/background-purple-1.jpg");
+    background-image: url("../Images/background-2.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -25,7 +26,8 @@ form{
 #form_title{
     margin-right: 250px;
     text-align: right;
-    margin-top: -200px;
+    margin-top: -170px;
+    text-decoration: underline;
 }
 
 #disclaimer{
@@ -42,11 +44,29 @@ form{
     text-align: left;
     width: 1000px;
     margin-top: 150px;
+    text-decoration: underline;
+    text-decoration-color: rgb(112, 112, 230);
 }
 
-#link{
+#home_link{
+    text-align: left;
+    width: 1000px;
+    margin-top: 150px;
+    text-decoration: underline;
+    text-decoration-color: rgb(112, 112, 230);
+}
+
+#links{
     text-decoration: none;
-    color: rgb(6, 6, 177);
+    color: white;
     font-weight: bold;
     text-align: left;
+}
+
+#links:visited {
+    color: white;
+}
+
+#links:hover {
+    color: white;
 }
