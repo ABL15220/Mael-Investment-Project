@@ -19,7 +19,9 @@
     <ul>
         <li>Number of years married</li>
         <li>Number of children</li>
-        <li>Number of years Mael invests in the S&P 500</li>
+        <li>Number of years Mael invests</li>
+        <li>Realistic returns (changing every year instead of a static return)</li>
+        <li>Index fund (some riskier than others but with better returns)</li>
     </ul>
 
     <p id="rules">And you will get the total amount of money Mael will receive at the end of the time he wishes to stop investing.
@@ -30,9 +32,21 @@
     
     <h2 id="form_title">Input the parameters</h2>
     <form method="POST" action="{{ url_for('calculate') }}" enctype="multipart/form-data">
+
         <input type="number" name="years_married" placeholder="Number of years married" required><br>
         <input type="number" name="children" placeholder="Number of children" required><br>
-        <input type="number" name="years_invested" placeholder="Number of years Mael invests in the S&P 500" required><br>
+        <input type="number" name="years_invested" placeholder="Number of years Mael invests" required><br>
+
+        <input type="checkbox" name="realistic" id="realistic" checked>
+        <label for="realistic">Use realistic (changing) returns</label><br>
+        <select name="index_fund" required>
+            <option value="" disabled selected>Select index fund</option>
+            <option value="sp_500">S&P 500 (regular; ~2.5%)</option>
+            <option value="all_black">All On Black (50/50)</option>
+            <option value="us_gov_bonds">US Government Bond (safe; ~0.5%)</option>
+            <option value="russell_2000">Russell 2000 (risky; ~25%)</option>
+        </select><br>
+
         <input type="submit" value="Calculate">
     </form><br>
 
