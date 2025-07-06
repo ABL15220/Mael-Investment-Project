@@ -71,3 +71,12 @@ form{
 #graph_link:hover, #home_link:hover{
     color: rgb(219, 35, 207);
 }
+
+#profit_chart{
+    background-color: white;
+}
+
+#chart_container {
+    width: 1000px;
+    height: 500px;
+}

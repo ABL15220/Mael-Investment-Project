@@ -45,6 +45,8 @@ def calculate():
     num_years_married = request.form.get('years_married', type=int)
     num_children = request.form.get('children', type=int)
     num_years_invested = request.form.get('years_invested', type=int)
+    total_years = num_years_married + num_years_invested
+    label_years = list(range(1, total_years + 1))
 
     investment = initial_investment(num_years_married, num_children)
     profit = total_profit(num_years_invested, investment)
@@ -53,7 +55,7 @@ def calculate():
     profit = round(profit, 2)
 
     return render_template('calculate.html', investment=investment, profit=profit, years_married=num_years_married, 
-        children=num_children, years_invested=num_years_invested, money_per_year=money_per_year) 
+        children=num_children, years_invested=num_years_invested, money_per_year=money_per_year, total_years=label_years) 
 
 
 @app.route('/graphs')

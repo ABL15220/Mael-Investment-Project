@@ -2,8 +2,13 @@
 
 {% block title %}Results{% endblock %}
 
-{% block content %}
+{% block source %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+{% endblock %}
 
+{% block content %}
+    
     <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
 
     <h1>Results of the Mael Investment Project (MIP)</h1>
@@ -15,11 +20,90 @@
         investment?
     </p>
 
-    <ol id="list">
-    {% for value in money_per_year %}
-        <li>{{ value|round(2) }} USD</li>
-    {% endfor %}
-    </ol>
+    <div id="chart_container">
+        <canvas id="profit_chart"></canvas>
+    </div>
+
+    <script>
+
+        const profitData = {{ money_per_year | tojson }};
+        const years = {{ total_years | tojson }};
+        const divorceYear = {{ years_married }};
+
+        console.log('Profit data:', profitData);
+        console.log('Years:', years);
+        console.log('Divorce year:', divorceYear);
+
+        const ctx = document.getElementById('profit_chart').getContext('2d');
+
+        Chart.register(window['chartjs-plugin-annotation']);
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    data: profitData,
+                    borderColor: 'blue',
+                    fill: false,
+                    label: 'Profit',
+                },
+                {
+                    label: 'Divorce',
+                    data: [],  
+                    borderColor: 'red',
+                    borderDash: [6, 6],
+                    fill: false,
+                    pointRadius: 0,
+                    borderWidth: 2,
+                }]
+            },
+            options: {
+              plugins: {
+                  annotation: {
+                      annotations: {
+                          divorceLine: {
+                              type: 'line',
+                              xMin: divorceYear,
+                              xMax: divorceYear,
+                              borderColor: 'red',
+                              borderWidth: 2,
+                              borderDash: [6, 6],
+                              label: {
+                                    content: 'Divorce',
+                                    enabled: true,
+                                    position: 'start', 
+                              }
+                          }
+                      }
+                  },
+                  legend: {
+                    display: true,
+                    position: 'bottom',
+                  },
+                  title: {
+                      display: true,
+                      text: 'Profit Over Time',
+                      font: {
+                          size: 20
+                      },
+                      weight: 'bold'
+                  }
+              },
+              scales: {
+                  x: {
+                      title: { display: true, text: 'Year' }
+                  },
+                  y: {
+                      title: { display: true, text: 'Profit ($)' }
+                  }
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+          }
+      });
+
+    </script>
 
     <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this
         project, please contact me at: alexandretuanle@gmail.com</i><br>
