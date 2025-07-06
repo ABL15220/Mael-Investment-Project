@@ -15,7 +15,13 @@
         investment?
     </p>
 
-    <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this project, please 
-        contact me at: alexandretuanle@gmail.com</i><br>
+    <ol id="list">
+    {% for value in money_per_year %}
+        <li>{{ value|round(2) }} USD</li>
+    {% endfor %}
+    </ol>
+
+    <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this
+        project, please contact me at: alexandretuanle@gmail.com</i><br>
 
 {% endblock %}

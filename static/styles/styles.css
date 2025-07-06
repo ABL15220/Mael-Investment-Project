@@ -31,7 +31,7 @@ form{
 }
 
 #disclaimer{
-    text-align: left;
+    text-align: left, bottom;
     font-style: italic;
     color: gray;
     width: auto;
@@ -45,7 +45,7 @@ form{
     width: 1000px;
     margin-top: 150px;
     text-decoration: underline;
-    text-decoration-color: rgb(112, 112, 230);
+    color:rgb(81, 81, 255);
 }
 
 #home_link{
@@ -53,7 +53,7 @@ form{
     width: 1000px;
     margin-top: 150px;
     text-decoration: underline;
-    text-decoration-color: rgb(112, 112, 230);
+    color:rgb(81, 81, 255);
 }
 
 #links{
@@ -61,12 +61,13 @@ form{
     color: white;
     font-weight: bold;
     text-align: left;
+    font-size: large;
 }
 
-#links:visited {
-    color: white;
+#graph_link:visited, #home_link:visited{
+    color: rgb(81, 81, 255);
 }
 
-#links:hover {
-    color: white;
+#graph_link:hover, #home_link:hover{
+    color: rgb(219, 35, 207);
 }
