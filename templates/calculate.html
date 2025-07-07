@@ -16,8 +16,8 @@
         {{ "children" if children != 1 else "child" }} and led a happy life!
     </p>
     <p>After {{ years_married }} years Mael divorced and gained <strong>{{ investment }} USD</strong>, after investing in the 
-        {{ index_fund }} for {{ years_invested }} years he made a total of: <strong>{{ profit }} USD</strong>, do you think he made a good
-        investment?
+        {{ index_fund | default('S&P 500', true) }} for {{ years_invested }} years he made a total of: <strong>{{ profit }}
+        USD</strong>, do you think he made a good investment?
     </p>
 
     <div id="chart_container">

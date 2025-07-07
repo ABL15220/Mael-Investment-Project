@@ -43,15 +43,21 @@ def adjust_returns(returns, variation, index_fund):
     return returns
 
 
-def initial_investment(years_married, number_of_children, index_fund):
+def initial_investment(years_married, number_of_children, index_fund, realistic):
     total_income = base_income + number_of_children * child_income
     initial_investment = total_income
     money_per_year.append(round(initial_investment, 2)) 
 
-    returns, variation = set_index_fund(index_fund)
+    if realistic: 
+        returns, variation = set_index_fund(index_fund)
+    else:
+        returns = 1.126
 
     for year in range(years_married - 1):
-        returns = adjust_returns(returns, variation, index_fund) 
+        if realistic:
+            returns = adjust_returns(returns, variation, index_fund) 
+        else:
+            returns = 1.126
 
         initial_investment *= returns
         total_income *= 1.0286
@@ -61,12 +67,19 @@ def initial_investment(years_married, number_of_children, index_fund):
     return initial_investment
 
 
-def total_profit(years_invested, initial_investment, index_fund):
+def total_profit(years_invested, initial_investment, index_fund, realistic):
     total_profit = initial_investment
-    returns, variation = set_index_fund(index_fund)
+
+    if realistic: 
+        returns, variation = set_index_fund(index_fund)
+    else:
+        returns = 1.126
 
     for year in range(years_invested):
-        returns = adjust_returns(returns, variation, index_fund) 
+        if realistic:
+            returns = adjust_returns(returns, variation, index_fund) 
+        else:
+            returns = 1.126
 
         total_profit *= returns
         money_per_year.append(round(total_profit, 2))
@@ -91,9 +104,10 @@ def calculate():
     label_years = list(range(1, total_years + 1))
     index_fund = request.form.get('index_fund', type=str)
     divorce_year = num_years_married - 1
+    realistic = request.form.get('realistic') == 'on'
 
-    investment = initial_investment(num_years_married, num_children, index_fund)
-    profit = total_profit(num_years_invested, investment, index_fund)
+    investment = initial_investment(num_years_married, num_children, index_fund, realistic)
+    profit = total_profit(num_years_invested, investment, index_fund, realistic)
 
     investment = round(investment, 2)
     profit = round(profit, 2)

@@ -47,11 +47,26 @@
             <option value="Russell 2000">Russell 2000 (risky; ~25%)</option>
         </select><br>
 
-        <input type="submit" value="Calculate">
+        <input type="submit" value="Calculate" id="calculate_button">
         
     </form><br>
 
     <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involed is offended by this project, please 
         contact me at: alexandretuanle@gmail.com</i><br>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const checkbox = document.getElementById('realistic');
+        const dropdown = document.querySelector('select[name="index_fund"]');
+
+        function toggleDropdown() {
+            dropdown.disabled = !checkbox.checked;
+        }
+
+        toggleDropdown();
+
+        checkbox.addEventListener('change', toggleDropdown);
+        });
+    </script>
 
 {% endblock %}
