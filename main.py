@@ -1,5 +1,8 @@
 from flask import Flask, request, render_template, redirect, url_for, Response, send_from_directory
 import random
+import base64
+import os
+from datetime import datetime
 
 base_income = 420.08 
 child_income = 210.04
@@ -118,7 +121,47 @@ def calculate():
 
 @app.route('/graphs')
 def graphs():
-    return render_template('graphs.html')
+    save_dir = 'Mael Investement Project\static\Graphs'
+    chart_files = sorted(os.listdir(save_dir)) if os.path.exists(save_dir) else []
+    chart_paths = [f'Graphs/{f}' for f in chart_files if f.endswith('.png')]
+    return render_template('graphs.html', chart_paths=chart_paths)
+
+
+@app.route('/save_chart', methods=['POST'])
+def save_chart():
+    data = request.get_json()
+    image_data = data['image']
+
+    header, encoded = image_data.split(",", 1)
+    decoded = base64.b64decode(encoded)
+
+    save_dir = 'Mael Investement Project\static\Graphs'
+    os.makedirs(save_dir, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"chart_{timestamp}.png"
+    file_path = os.path.join(save_dir, filename)
+
+    with open(file_path, 'wb') as f:
+        f.write(decoded)
+
+    return {'status': 'success', 'filename': filename}
+
+
+@app.route('/delete_chart', methods=['POST'])
+def delete_chart():
+    data = request.get_json()
+    filename = data.get('filename')
+
+    if filename:
+        file_path = os.path.join('Mael Investement Project\static', filename)
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            return {'status': 'success'}
+        else:
+            return {'status': 'file_not_found'}, 404
+    else:
+        return {'status': 'no_filename_provided'}, 400
 
 
 if __name__ == '__main__':

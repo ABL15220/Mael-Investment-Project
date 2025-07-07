@@ -11,9 +11,51 @@
 
     <h2>Profit Graphs</h2>
     <h3>Profit Over Marriage Years After 10 Years of Investment</h3><br>
-    <img src="{{ url_for('static', filename='Graphs/profit-10-years.png') }}" alt="Profit Over Marriage Time After Investement"><br>
+    <img src="{{ url_for('static', filename='Graphs/Predefined/profit-10-years.png') }}" alt="Profit Over Marriage Time After Investement"><br>
+
+    <h2>Saved Charts</h2>
+    {% for chart in chart_paths %}
+        {% set date_str = chart[13:].split('-')[0] %}
+        <h3>Chart n°{{ loop.index }}</h3>
+        <div style="margin-bottom: 5px;">
+            <i>Saved the: {{ date_str[:4] }}/{{ date_str[4:6] }}/{{ date_str[6:8] }}</i>
+        </div>
+        <img src="{{ url_for('static', filename=chart) }}" alt="Saved Chart" id="saved_charts"><br>
+
+        <button onclick="deleteChart('{{ chart }}')" id="delete_chart_button">Delete</button>
+
+        <a href="{{ url_for('static', filename=chart) }}" download="chart-{{ loop.index }}.png">
+            <button id="download_chart_btn">Download Chart n°{{ loop.index }}</button>
+        </a>
+    {% else %}
+        <p>No charts saved yet.</p>
+    {% endfor %}
 
     <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this project, please 
         contact me at: alexandretuanle@gmail.com</i><br>
+
+    <script>
+        function deleteChart(chartPath) {
+            if (confirm('Are you sure you want to delete this chart?')) {
+                fetch('{{ url_for("delete_chart") }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ filename: chartPath })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        location.reload();
+                    } else {
+                        alert('Error deleting chart');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting chart:', error);
+                    alert('Error deleting chart');
+                });
+            }
+        }
+    </script>
 
 {% endblock %}

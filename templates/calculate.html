@@ -24,6 +24,8 @@
         <canvas id="profit_chart"></canvas>
     </div>
 
+    <button id="save_chart_btn">Save Chart</button>
+
     <script>
 
         const profitData = {{ money_per_year | tojson }};
@@ -98,6 +100,26 @@
               maintainAspectRatio: false,
           }
       });
+
+      document.getElementById('save_chart_btn').addEventListener('click', function() {
+        const imageData = ctx.canvas.toDataURL('image/png');
+        fetch('{{ url_for("save_chart") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ image: imageData })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Chart saved as:', data.filename);
+            alert('Chart saved!');
+        })
+        .catch(error => {
+            console.error('Error saving chart:', error);
+            alert('Error saving chart');
+        });
+     });
 
     </script>
 

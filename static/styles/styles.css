@@ -81,7 +81,7 @@ form{
     height: 500px;
 }
 
-#calculate_button {
+#calculate_button, #save_chart_btn, #delete_chart_button, #download_chart_btn {
     background-color: rgb(81, 81, 255);
     color: white;
     border: none;
@@ -90,4 +90,11 @@ form{
     border-radius: 16px;
     cursor: pointer;
     margin-top: 5px;
+}
+
+#saved_charts{
+    width: 1000px;
+    height: 500px;
+    background-color: white;
+    margin-top: 10px;
 }
