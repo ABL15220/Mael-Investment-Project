@@ -11,27 +11,48 @@ def reset_money_per_year():
     money_per_year = []
 
 
-def set_returns(index_fund):
+def set_index_fund(index_fund):
     returns = 0
+    variation = 0
 
-    if index_fund == 'sp_500':
+    if index_fund == 'S&P 500':
         returns = 1.126
-    elif index_fund == 'all_black':
-        returns = 2
-    elif index_fund == 'us_gov_bonds':
+        variation = 0.025
+    elif index_fund == 'All On Black':
+        returns = 1
+        variation = 1
+    elif index_fund == 'US Government Bond':
         returns = 1.03
-    elif index_fund == 'russell_2000':
-        returns = 1.25
+        variation = 0.005
+    elif index_fund == 'Russell 2000':
+        returns = 1.2
+        variation = 0.25
+
+    return returns, variation
+
+
+def adjust_returns(returns, variation, index_fund):
+    variation = random.uniform(-variation, variation)
+
+    if index_fund == 'All On Black':
+        x = random.choice([0, 2])
+        returns = x
+    else:
+        returns += variation
 
     return returns
 
 
-def initial_investment(years_married, number_of_children, returns):
+def initial_investment(years_married, number_of_children, index_fund):
     total_income = base_income + number_of_children * child_income
     initial_investment = total_income
     money_per_year.append(round(initial_investment, 2)) 
 
+    returns, variation = set_index_fund(index_fund)
+
     for year in range(years_married - 1):
+        returns = adjust_returns(returns, variation, index_fund) 
+
         initial_investment *= returns
         total_income *= 1.0286
         initial_investment += total_income
@@ -40,12 +61,16 @@ def initial_investment(years_married, number_of_children, returns):
     return initial_investment
 
 
-def total_profit(years_invested, initial_investment, returns):
+def total_profit(years_invested, initial_investment, index_fund):
     total_profit = initial_investment
+    returns, variation = set_index_fund(index_fund)
+
     for year in range(years_invested):
+        returns = adjust_returns(returns, variation, index_fund) 
+
         total_profit *= returns
         money_per_year.append(round(total_profit, 2))
-        
+
     return total_profit
 
 
@@ -64,17 +89,18 @@ def calculate():
     num_years_invested = request.form.get('years_invested', type=int)
     total_years = num_years_married + num_years_invested
     label_years = list(range(1, total_years + 1))
-    returns = request.form.get('index_fund', type=str)
+    index_fund = request.form.get('index_fund', type=str)
+    divorce_year = num_years_married - 1
 
-    investment = initial_investment(num_years_married, num_children, returns=set_returns(returns))
-    profit = total_profit(num_years_invested, investment, returns=set_returns(returns))
+    investment = initial_investment(num_years_married, num_children, index_fund)
+    profit = total_profit(num_years_invested, investment, index_fund)
 
     investment = round(investment, 2)
     profit = round(profit, 2)
 
     return render_template('calculate.html', investment=investment, profit=profit, years_married=num_years_married, 
-        children=num_children, years_invested=num_years_invested, money_per_year=money_per_year, total_years=label_years) 
-
+        children=num_children, years_invested=num_years_invested, money_per_year=money_per_year, total_years=label_years,
+        index_fund=index_fund, divorce_year=divorce_year)
 
 @app.route('/graphs')
 def graphs():

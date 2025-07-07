@@ -15,8 +15,8 @@
     <p>Mael was married for {{ years_married }} years and decided to invest for {{ years_invested }} years. He had {{ children }} 
         {{ "children" if children != 1 else "child" }} and led a happy life!
     </p>
-    <p>After {{ years_married }} years Mael divorced and gained <strong>{{ investment }} USD</strong>, after investing in the S&P
-        500 for {{ years_invested }} years he made a total of: <strong>{{ profit }} USD</strong>, do you think he made a good
+    <p>After {{ years_married }} years Mael divorced and gained <strong>{{ investment }} USD</strong>, after investing in the 
+        {{ index_fund }} for {{ years_invested }} years he made a total of: <strong>{{ profit }} USD</strong>, do you think he made a good
         investment?
     </p>
 
@@ -28,11 +28,7 @@
 
         const profitData = {{ money_per_year | tojson }};
         const years = {{ total_years | tojson }};
-        const divorceYear = {{ years_married }};
-
-        console.log('Profit data:', profitData);
-        console.log('Years:', years);
-        console.log('Divorce year:', divorceYear);
+        const divorceYear = {{ divorce_year }};
 
         const ctx = document.getElementById('profit_chart').getContext('2d');
 
