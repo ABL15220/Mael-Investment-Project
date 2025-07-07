@@ -11,11 +11,11 @@
 
     <h2>Profit Graphs</h2>
     <h3>Profit Over Marriage Years After 10 Years of Investment</h3><br>
-    <img src="{{ url_for('static', filename='Graphs/Predefined/profit-10-years.png') }}" alt="Profit Over Marriage Time After Investement"><br>
+    <img src="{{ url_for('static', filename='Graphs/Predefined/profit-10-years.png') }}" alt="Profit Over Marriage Time After Investment"><br>
 
     <h2>Saved Charts</h2>
     {% for chart in chart_paths %}
-        {% set date_str = chart[13:].split('-')[0] %}
+        {% set date_str = chart[18:].split('-')[0] %}
         <h3>Chart n°{{ loop.index }}</h3>
         <div style="margin-bottom: 5px;">
             <i>Saved the: {{ date_str[:4] }}/{{ date_str[4:6] }}/{{ date_str[6:8] }}</i>

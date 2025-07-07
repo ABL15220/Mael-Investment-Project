@@ -6,6 +6,15 @@
 
     <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
 
+    <p id="right_links">
+        {% if username %}
+            <a href="{{ url_for('logout') }}" id="account_links">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" id="account_links">Login</a> |
+            <a href="{{ url_for('signup') }}" id="account_links">Sign up</a>
+        {% endif %}
+    </p>
+
     <h1>Welcome to the Mael Investment Project (MIP)</h1>
     <strong>This shows you how much Mael will make depending on how long he stays married with his soulmate (name classified)
     </strong><br>

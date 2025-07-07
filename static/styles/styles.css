@@ -56,7 +56,7 @@ form{
     color:rgb(81, 81, 255);
 }
 
-#links{
+#links, #right_links {
     text-decoration: none;
     color: white;
     font-weight: bold;
@@ -64,12 +64,20 @@ form{
     font-size: large;
 }
 
-#graph_link:visited, #home_link:visited{
+#graph_link:visited, #home_link:visited, #account_links:visited {
     color: rgb(81, 81, 255);
 }
 
-#graph_link:hover, #home_link:hover{
+#graph_link:hover, #home_link:hover, #account_links:hover {
     color: rgb(219, 35, 207);
+}
+
+#account_links {
+    text-align: right;
+    margin-top: -50px;
+    margin-right: 20px;
+    color: rgb(81, 81, 255);
+    text-decoration: underline;
 }
 
 #profit_chart{

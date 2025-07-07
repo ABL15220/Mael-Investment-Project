@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template, redirect, url_for, Response, send_from_directory
+from flask import Flask, request, render_template, redirect, url_for, Response, send_from_directory, session
+import json
 import random
 import base64
 import os
@@ -92,10 +93,25 @@ def total_profit(years_invested, initial_investment, index_fund, realistic):
 
 app = Flask(__name__)
 
+app.secret_key = 'panjo2010!'
+
+USERS_FILE = 'Mael Investment Project/users.json'
+
+def load_users():
+    if os.path.exists(USERS_FILE):
+        with open(USERS_FILE, 'r') as f:
+            return json.load(f)
+    return {}
+
+def save_users(users):
+    with open(USERS_FILE, 'w') as f:
+        json.dump(users, f)
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     reset_money_per_year()
-    return render_template('index.html')
+    return render_template('index.html', username=session.get('username'))
 
 
 @app.route('/calculate', methods=['GET', 'POST'])
@@ -121,21 +137,29 @@ def calculate():
 
 @app.route('/graphs')
 def graphs():
-    save_dir = 'Mael Investement Project\static\Graphs'
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    username = session['username']
+    save_dir = f'Mael Investment Project\static\Graphs\{username}'
     chart_files = sorted(os.listdir(save_dir)) if os.path.exists(save_dir) else []
-    chart_paths = [f'Graphs/{f}' for f in chart_files if f.endswith('.png')]
-    return render_template('graphs.html', chart_paths=chart_paths)
+    chart_paths = [f'Graphs/{username}/{f}' for f in chart_files if f.endswith('.png')]
+    return render_template('graphs.html', chart_paths=chart_paths, username=username)
 
 
 @app.route('/save_chart', methods=['POST'])
 def save_chart():
+    if 'username' not in session:
+        return {'status': 'unauthorized'}, 401
+
+    username = session['username']
     data = request.get_json()
     image_data = data['image']
 
     header, encoded = image_data.split(",", 1)
     decoded = base64.b64decode(encoded)
 
-    save_dir = 'Mael Investement Project\static\Graphs'
+    save_dir = os.path.join('Mael Investment Project', 'static', 'Graphs', username)
     os.makedirs(save_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -150,18 +174,62 @@ def save_chart():
 
 @app.route('/delete_chart', methods=['POST'])
 def delete_chart():
+    if 'username' not in session:
+        return {'status': 'unauthorized'}, 401
+
+    username = session['username']
     data = request.get_json()
     filename = data.get('filename')
 
-    if filename:
-        file_path = os.path.join('Mael Investement Project\static', filename)
+    if filename and filename.startswith(f'Graphs/{username}/'):
+        file_path = os.path.join('Mael Investment Project', 'static', filename)
         if os.path.exists(file_path):
             os.remove(file_path)
             return {'status': 'success'}
         else:
             return {'status': 'file_not_found'}, 404
     else:
-        return {'status': 'no_filename_provided'}, 400
+        return {'status': 'invalid_filename'}, 400
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        users = load_users()
+
+        if username in users:
+            return render_template('signup.html', error='Username already exists')
+        else:
+            users[username] = password  
+            save_users(users)
+            os.makedirs(f'Mael Investment Project\static\Graphs\{username}', exist_ok=True)
+            session['username'] = username
+            return redirect(url_for('index'))
+    return render_template('signup.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        users = load_users()
+
+        if username in users and users[username] == password:
+            session['username'] = username
+            return redirect(url_for('index'))
+        else:
+            return render_template('login.html', error='Invalid credentials')
+    return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
 
 
 if __name__ == '__main__':
