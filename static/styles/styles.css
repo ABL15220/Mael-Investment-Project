@@ -64,20 +64,30 @@ form{
     font-size: large;
 }
 
-#graph_link:visited, #home_link:visited, #account_links:visited {
+#graph_link:visited, #home_link:visited {
     color: rgb(81, 81, 255);
 }
 
-#graph_link:hover, #home_link:hover, #account_links:hover {
+#graph_link:hover, #home_link:hover {
     color: rgb(219, 35, 207);
 }
 
-#account_links {
+#right_links {
     text-align: right;
-    margin-top: -50px;
-    margin-right: 20px;
-    color: rgb(81, 81, 255);
+    margin-top: -50px; 
+}
+
+.account_link {
+    color: rgb(24, 24, 251);
     text-decoration: underline;
+}
+
+.account_link:hover {
+    color: rgb(164, 3, 154);
+}
+
+.account_link:visited {
+    color: rgb(24, 24, 251);
 }
 
 #profit_chart{

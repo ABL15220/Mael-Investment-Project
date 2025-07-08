@@ -8,10 +8,10 @@
 
     <p id="right_links">
         {% if username %}
-            <a href="{{ url_for('logout') }}" id="account_links">Logout</a>
+            <a href="{{ url_for('logout') }}" class="account_link">Logout</a>
         {% else %}
-            <a href="{{ url_for('login') }}" id="account_links">Login</a> |
-            <a href="{{ url_for('signup') }}" id="account_links">Sign up</a>
+            <a href="{{ url_for('login') }}" class="account_link">Login</a> |
+            <a href="{{ url_for('signup') }}" class="account_link">Sign up</a>
         {% endif %}
     </p>
 
