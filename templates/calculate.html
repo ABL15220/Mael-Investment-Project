@@ -8,9 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    
-    <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
-
+ 
     <p id="right_links">
         {% if username %}
             <a href="{{ url_for('logout') }}" class="account_link">Log out</a>
@@ -131,8 +129,5 @@
      });
 
     </script>
-
-    <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this
-        project, please contact me at: alexandretuanle@gmail.com</i><br>
 
 {% endblock %}

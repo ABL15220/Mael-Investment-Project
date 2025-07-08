@@ -138,7 +138,7 @@ def calculate():
 @app.route('/graphs')
 def graphs():
     if 'username' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login_required'))
 
     username = session['username']
     save_dir = f'Mael Investment Project\static\Graphs\{username}'
@@ -229,6 +229,11 @@ def login():
 def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
+
+
+@app.route('/login_required')
+def login_required():
+    return render_template('login_required.html')
 
 
 

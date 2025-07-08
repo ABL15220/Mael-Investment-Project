@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Login Required{% endblock %}
+
+{% block content%}
+
+    <h1>Login Required</h1>
+    <p>Unfortunately to gain access to this feature you must first <a href="{{ url_for('signup') }}" id="link">Sign Up</a>
+        or <a href="{{ url_for('login') }}" id="link">Login</a> (this only requires a username and password, no email...).
+    </p>
+
+{% endblock %}

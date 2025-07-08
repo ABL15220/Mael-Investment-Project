@@ -4,8 +4,6 @@
 
 {% block content %}
 
-    <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
-
     <h2>Sign Up</h2>
 
     <form method="POST">
@@ -19,8 +17,5 @@
     {% endif %}
 
     <p>Already have an account? <a href="{{ url_for('login') }}" id="link">Log in</a></p>
-
-    <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this project, please 
-        contact me at: alexandretuanle@gmail.com</i><br>
 
 {% endblock %}

@@ -4,8 +4,6 @@
 
 {% block content %}
 
-    <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
-    
     <p id="right_links">
         {% if username %}
             <a href="{{ url_for('logout') }}" class="account_link">Log out</a>
@@ -14,12 +12,12 @@
             <a href="{{ url_for('signup') }}" class="account_link">Sign up</a>
         {% endif %}
     </p>
-    
+
     <h1>Graphs of the Mael Investment Project (MIP)</h1>
     <p>This page has graphs of different information about the Mael Investment Project (MIP).</p>
 
     <h2>Profit Graphs</h2>
-    <h3>Profit Over Marriage Years After 10 Years of Investment</h3><br>
+    <h3>Profit of 10 Years of Investment in the S&P 500 After 10 Years of Marriage</h3><br>
     <img src="{{ url_for('static', filename='Graphs/Predefined/profit-10-years.png') }}" alt="Profit Over Marriage Time After Investment"><br>
 
     <h2>Saved Charts</h2>
@@ -39,9 +37,6 @@
     {% else %}
         <p>No charts saved yet.</p>
     {% endfor %}
-
-    <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involved is offended by this project, please 
-        contact me at: alexandretuanle@gmail.com</i><br>
 
     <script>
         function deleteChart(chartPath) {

@@ -10,7 +10,14 @@
 
 <body>
 
-    {% block content %}{% endblock %}
+    <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <i id="disclaimer">Note: This is a fun project and not meant to be taken seriously. If anyone involed is offended by this project, please 
+        contact me at: alexandretuanle@gmail.com</i><br>
 
 </body>
 
