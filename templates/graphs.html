@@ -5,7 +5,16 @@
 {% block content %}
 
     <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
-
+    
+    <p id="right_links">
+        {% if username %}
+            <a href="{{ url_for('logout') }}" class="account_link">Log out</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="account_link">Login</a> |
+            <a href="{{ url_for('signup') }}" class="account_link">Sign up</a>
+        {% endif %}
+    </p>
+    
     <h1>Graphs of the Mael Investment Project (MIP)</h1>
     <p>This page has graphs of different information about the Mael Investment Project (MIP).</p>
 

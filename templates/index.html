@@ -8,7 +8,7 @@
 
     <p id="right_links">
         {% if username %}
-            <a href="{{ url_for('logout') }}" class="account_link">Logout</a>
+            <a href="{{ url_for('logout') }}" class="account_link">Log out</a>
         {% else %}
             <a href="{{ url_for('login') }}" class="account_link">Login</a> |
             <a href="{{ url_for('signup') }}" class="account_link">Sign up</a>
@@ -40,7 +40,7 @@
     </p>
     
     <h2 id="form_title">Input the parameters</h2>
-    <form method="POST" action="{{ url_for('calculate') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url_for('calculate') }}" enctype="multipart/form-data" id="form">
 
         <input type="number" name="years_married" placeholder="Number of years married" required><br>
         <input type="number" name="children" placeholder="Number of children" required><br>

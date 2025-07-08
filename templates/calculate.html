@@ -11,6 +11,15 @@
     
     <p id="links"><a href="{{ url_for('index') }}" id="home_link">Home</a> | <a href="{{ url_for('graphs') }}" id="graph_link">Graphs</a></p>
 
+    <p id="right_links">
+        {% if username %}
+            <a href="{{ url_for('logout') }}" class="account_link">Log out</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="account_link">Login</a> |
+            <a href="{{ url_for('signup') }}" class="account_link">Sign up</a>
+        {% endif %}
+    </p>
+
     <h1>Results of the Mael Investment Project (MIP)</h1>
     <p>Mael was married for {{ years_married }} years and decided to invest for {{ years_invested }} years. He had {{ children }} 
         {{ "children" if children != 1 else "child" }} and led a happy life!

@@ -17,7 +17,7 @@ body {
     width: 1000px;
 }
 
-form{
+#form{
     float: right;
     padding-left: 100px;
     padding-right: 300px;
@@ -31,7 +31,7 @@ form{
 }
 
 #disclaimer{
-    text-align: left, bottom;
+    text-align: left;
     font-style: italic;
     color: gray;
     width: auto;
@@ -58,17 +58,16 @@ form{
 
 #links, #right_links {
     text-decoration: none;
-    color: white;
     font-weight: bold;
     text-align: left;
     font-size: large;
 }
 
-#graph_link:visited, #home_link:visited {
+#graph_link:visited, #home_link:visited, #link:visited {
     color: rgb(81, 81, 255);
 }
 
-#graph_link:hover, #home_link:hover {
+#graph_link:hover, #home_link:hover, #link:hover {
     color: rgb(219, 35, 207);
 }
 
@@ -83,7 +82,7 @@ form{
 }
 
 .account_link:hover {
-    color: rgb(164, 3, 154);
+    color: black !important;
 }
 
 .account_link:visited {
@@ -99,7 +98,7 @@ form{
     height: 500px;
 }
 
-#calculate_button, #save_chart_btn, #delete_chart_button, #download_chart_btn {
+#calculate_button, #save_chart_btn, #delete_chart_button, #download_chart_btn, #submit_btn {
     background-color: rgb(81, 81, 255);
     color: white;
     border: none;
@@ -115,4 +114,15 @@ form{
     height: 500px;
     background-color: white;
     margin-top: 10px;
+}
+
+#login_form {
+    float: left;
+    padding: 10px;
+}
+
+#link {
+    font-weight: bold;
+    font-size: large;
+    color: rgb(81, 81, 255);
 }
